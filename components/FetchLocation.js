@@ -1,9 +1,12 @@
 import React from 'react'
-import Button from 'react-native'
+import {Button, View, Alert} from 'react-native'
 
 const fetchLocation = props => {
     return (
-        <Button title="Get Location" onPress={props.onGetLocation}/>
+        <View>
+            <Button title="Get Location" onPress={() =>  {
+                return props.onGetLocation}}/>
+        </View>
     );
 };
 

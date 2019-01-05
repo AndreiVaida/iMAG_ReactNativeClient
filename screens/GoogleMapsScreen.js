@@ -1,12 +1,10 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, Alert} from 'react-native';
 import FetchLocation from '../components/FetchLocation'
 
 export default class HomeScreen extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-        };
     }
 
     render() {
@@ -20,9 +18,9 @@ export default class HomeScreen extends React.Component {
 
     getUserLocationHandler = () => {
         navigator.geolocation.getCurrentPosition(position => {
-            console.log(position);
+            Alert.alert(JSON.stringify(position));
         }, error => {
-            console.log(error);
+            Alert.alert(JSON.stringify(error.toString()));
         })
     }
 

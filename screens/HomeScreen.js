@@ -82,6 +82,16 @@ export default class HomeScreen extends React.Component {
                         }
                     />
                 </View>
+                <View style={styles.buttonView}>
+                    <Button
+                        title="Vezi locația ta"
+                        color="#20ad59"
+                        accessibilityLabel="Get your location"
+                        onPress={() =>
+                            this.props.navigation.navigate('GoogleMapsScreen')
+                        }
+                    />
+                </View>
             </View>
         );
     }

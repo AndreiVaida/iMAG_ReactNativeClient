@@ -5,6 +5,7 @@ import ProductDetailsScreen from "../screens/ProductDetailsScreen";
 import LoginScreen from "../screens/LoginScreen";
 import WishlistScreen from "../screens/WishlistScreen";
 import RegisterScreen from "../screens/RegisterScreen";
+import GoogleMapsScreen from "../screens/GoogleMapsScreen";
 
 const AppNavigator = createStackNavigator({
     HomeScreen: {screen: HomeScreen},
@@ -13,5 +14,6 @@ const AppNavigator = createStackNavigator({
     LoginScreen: {screen: LoginScreen},
     RegisterScreen: {screen: RegisterScreen},
     WishlistScreen: {screen: WishlistScreen},
+    GoogleMapsScreen: {screen: GoogleMapsScreen}
 });
 export default AppNavigator;
