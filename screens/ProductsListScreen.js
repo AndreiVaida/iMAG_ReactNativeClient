@@ -1,5 +1,5 @@
 import React from 'react';
-import {AsyncStorage, ScrollView, StyleSheet, Text, View, NetInfo} from 'react-native';
+import {AsyncStorage, ScrollView, StyleSheet, Text, View, NetInfo, ActivityIndicator} from 'react-native';
 import {ServerUrl} from '../App'
 import {List, ListItem} from "react-native-elements";
 
@@ -17,6 +17,7 @@ export default class ProductsListScreen extends React.Component {
             'productList': [],
             'message': "Loading...",
             "isConnected": true,
+            "isLoading": true,
         };
     }
 
@@ -26,6 +27,10 @@ export default class ProductsListScreen extends React.Component {
                 <View style={styles.title}>
                     <Text>All products</Text>
                     <Text style={{color: '#b2a707'}}>{this.state.message}</Text>
+                </View>
+
+                <View>
+                    <ActivityIndicator size="large" color="#00ff00" animating={this.state.isLoading}/>
                 </View>
 
                 <ScrollView
@@ -121,7 +126,8 @@ export default class ProductsListScreen extends React.Component {
                     newProductList.push(productsJson[i]);
                 }
                 thisVar.setState({
-                    'productList': newProductList
+                    'productList': newProductList,
+                    'isLoading': false,
                 });
             })
             .catch(function () {
@@ -169,7 +175,10 @@ export default class ProductsListScreen extends React.Component {
                         products.push(product);
                     }
                 }
-                thisVar.setState({'productList': products});
+                thisVar.setState({
+                    'productList': products,
+                    'isLoading': false,
+                });
             } catch (e) {
                 console.log("Error at getting products from local storage: " + e.toString());
             }

@@ -1,5 +1,10 @@
 import React from 'react';
-import {AsyncStorage, Button, StyleSheet, Text, View} from 'react-native';
+import {ActivityIndicator, AsyncStorage, Button, StyleSheet, Text, View} from 'react-native';
+
+// const Square = posed.div({
+//     idle: {scale: 1},
+//     hovered: {scale: 2},
+// });
 
 export default class HomeScreen extends React.Component {
     constructor(props) {
@@ -7,6 +12,7 @@ export default class HomeScreen extends React.Component {
         this.state = {
             loginButtonText: "Login",
             isLoggedIn: false,
+            hovering: false,
         };
     }
 
@@ -18,16 +24,15 @@ export default class HomeScreen extends React.Component {
                 const token = await AsyncStorage.getItem('token');
 
                 if (this.isLoggedIn(userId, token)) {
-                    thisVar.setState({loginButtonText:  "Logout"});
-                    thisVar.setState({isLoggedIn:  true});
-                }
-                else {
-                    thisVar.setState({loginButtonText:  "Login"});
-                    thisVar.setState({isLoggedIn:  false});
+                    thisVar.setState({loginButtonText: "Logout"});
+                    thisVar.setState({isLoggedIn: true});
+                } else {
+                    thisVar.setState({loginButtonText: "Login"});
+                    thisVar.setState({isLoggedIn: false});
                 }
             } catch (error) {
-                thisVar.setState({loginButtonText:  "Login"});
-                thisVar.setState({isLoggedIn:  false});
+                thisVar.setState({loginButtonText: "Login"});
+                thisVar.setState({isLoggedIn: false});
             }
         };
         start();
@@ -99,8 +104,7 @@ export default class HomeScreen extends React.Component {
     loginOrLogout() {
         if (this.state.isLoggedIn) {
             this.logout();
-        }
-        else {
+        } else {
             this.props.navigation.navigate('LoginScreen')
         }
     }
@@ -111,8 +115,8 @@ export default class HomeScreen extends React.Component {
             try {
                 await AsyncStorage.removeItem('userId');
                 await AsyncStorage.removeItem('token');
-                thisVar.setState({loginButtonText:  "Login"});
-                thisVar.setState({isLoggedIn:  false});
+                thisVar.setState({loginButtonText: "Login"});
+                thisVar.setState({isLoggedIn: false});
             } catch (error) {
                 console.log("Error when removing userId and token from local storage.")
             }
