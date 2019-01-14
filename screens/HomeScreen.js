@@ -97,6 +97,16 @@ export default class HomeScreen extends React.Component {
                         }
                     />
                 </View>
+                <View style={styles.buttonView}>
+                    <Button
+                        title="Contact"
+                        color="#20ad59"
+                        accessibilityLabel="Contact us"
+                        onPress={() =>
+                            this.props.navigation.navigate('SendEmailScreen')
+                        }
+                    />
+                </View>
             </View>
         );
     }
